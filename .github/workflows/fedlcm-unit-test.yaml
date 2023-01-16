@@ -3,6 +3,7 @@ name: FedLCM server unit test
 on:  
   pull_request:
     paths:
+    - ".github/workflows/fedlcm-unit-test.yaml"
     - "server/*"
     - “pkg/*”
 jobs:

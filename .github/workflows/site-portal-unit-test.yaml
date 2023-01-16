@@ -3,6 +3,7 @@ name: Site-Portal server unit test
 on:  
   pull_request:
     paths:
+    - ".github/workflows/site-portal-unit-test.yaml"
     - "site-portal/server/*"
 
 jobs:
