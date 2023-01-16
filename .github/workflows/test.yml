@@ -31,6 +31,7 @@ jobs:
           echo "TAG=${TAG}"
           echo "TAG=${TAG}" >> $GITHUB_STATE
           echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
       - name: test TAG
         run: |
           TAG=${{steps.prepare-the-tag.outputs.TAG}}
