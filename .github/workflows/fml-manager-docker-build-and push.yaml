@@ -28,11 +28,11 @@ jobs:
           if [ $VERSION = "main" ]; then
             TAG="latest"
           fi
-          echo "::set-output name=tag::$TAG"
-          echo "::set-output name=tag::$TAG"
+          echo "TAG=${TAG}"
+          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
       - name: Build image
         run: |
-          TAG=${{steps.prepare-the-tag.outputs.tag}}
+          TAG=${{steps.prepare-the-tag.outputs.TAG}}
           if [ ! -z "$TAG" ]; then
               export TAG=$TAG
           fi
@@ -44,7 +44,7 @@ jobs:
 
       - name: Push image
         run: |
-          TAG=${{steps.prepare-the-tag.outputs.tag}}
+          TAG=${{steps.prepare-the-tag.outputs.TAG}}
           if [ ! -z "$TAG" ]; then
               export TAG=$TAG
           fi

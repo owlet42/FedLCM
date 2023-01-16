@@ -36,14 +36,14 @@ jobs:
           if [ ! -z "$TAG" ]; then
               export TAG=$TAG
           fi
-          make docker-build TAG=$VERSION
+          make docker-build
 
       - name: Log into DockerHub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Push image
         run: |
-          TAG=${{steps.prepare-the-tag.outputs.tag}}
+          TAG=${{steps.prepare-the-tag.outputs.TAG}}
           if [ ! -z "$TAG" ]; then
               export TAG=$TAG
           fi
