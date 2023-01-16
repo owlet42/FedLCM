@@ -3,6 +3,7 @@ name: FML-Manager server unit test
 on:  
   pull_request:
     paths:
+    - ".github/workflows/fml-manager-unit-test.yaml"
     - "fml-manager/server/*"
 
 jobs:
