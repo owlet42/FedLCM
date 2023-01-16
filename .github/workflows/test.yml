@@ -28,5 +28,7 @@ jobs:
           if [ $VERSION = "main" ]; then
             TAG="latest"
           fi
+          echo "TAG={TAG}"
+          echo "TAG=${TAG}"
           echo "TAG={TAG}" >> $GITHUB_STATE
           echo "TAG={TAG}" >> $GITHUB_OUTPUT
