@@ -29,11 +29,12 @@ jobs:
             TAG="latest"
           fi
           echo "::set-output name=tag::$TAG"
+          echo "::set-output name=tag::$TAG"
       - name: Build image
         run: |
-          VERSION=${{steps.prepare-the-tag.outputs.tag}}
-          if [ ! -z "$VERSION" ]; then
-              export VERSION
+          TAG=${{steps.prepare-the-tag.outputs.tag}}
+          if [ ! -z "$TAG" ]; then
+              export TAG=$TAG
           fi
           cd fml-manager
           make docker-build
@@ -43,9 +44,9 @@ jobs:
 
       - name: Push image
         run: |
-          VERSION=${{steps.prepare-the-tag.outputs.tag}}
-          if [ ! -z "$VERSION" ]; then
-              export VERSION
+          TAG=${{steps.prepare-the-tag.outputs.tag}}
+          if [ ! -z "$TAG" ]; then
+              export TAG=$TAG
           fi
           cd fml-manager
           make docker-push
