@@ -1,0 +1,31 @@
+name: test images tag
+
+on:
+  push:
+    # Publish `main` as Docker `latest` image.
+    branches:
+      - main
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+jobs:
+  # no test is required
+  test:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Prepare the TAG
+        id: prepare-the-tag
+        run: |
+          # strip git ref prefix from version
+          TAG=""
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          if [ $VERSION = "main" ]; then
+            TAG="latest"
+          fi
+          echo "::set-output name=tag::$TAG"
