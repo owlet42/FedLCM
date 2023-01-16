@@ -17,7 +17,7 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@main
 
       - name: Prepare the TAG
         id: prepare-the-tag
@@ -28,7 +28,10 @@ jobs:
           if [ $VERSION = "main" ]; then
             TAG="latest"
           fi
-          echo "TAG={TAG}"
           echo "TAG=${TAG}"
-          echo "TAG={TAG}" >> $GITHUB_STATE
-          echo "TAG={TAG}" >> $GITHUB_OUTPUT
+          echo "TAG=${TAG}" >> $GITHUB_STATE
+          echo "TAG=${TAG}" >> $GITHUB_OUTPUT
+      - name: test TAG
+        run: |
+          TAG=${{steps.prepare-the-tag.outputs.TAG}}
+          echo "TAG=${TAG}"
