@@ -28,4 +28,5 @@ jobs:
           if [ $VERSION = "main" ]; then
             TAG="latest"
           fi
-          echo "::set-output name=tag::$TAG"
+          echo "TAG={TAG}" >> $GITHUB_STATE
+          echo "TAG={TAG}" >> $GITHUB_OUTPUT
